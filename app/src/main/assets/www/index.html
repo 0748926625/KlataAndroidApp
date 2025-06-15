@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+  <title>JEU KLATA – Application Éducative</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #b35b04, #f3f1f4, #1e88e5);
+      background-size: 600% 600%;
+      animation: bgGradient 15s ease infinite;
+      color: #fff;
+      position: relative;
+    }
+
+    @keyframes bgGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .app-container {
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+
+    .subject-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .subject-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .subject-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .subject-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .license-status {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .license-status:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .subjects-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+      
+      .subject-card {
+        min-height: 140px;
+        padding: 20px;
+      }
+    }
+
+    @media (max-height: 600px) {
+      .app-container {
+        padding: 10px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .subject-card {
+        min-height: 120px;
+        padding: 15px;
+      }
+      
+      .subject-icon {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+      
+      .subject-title {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <h1>JEU KLATA</h1>
+    <p class="subtitle">Application Éducative - Niveau 3ème</p>
+    
+    <div class="subjects-grid">
+      <div class="subject-card" onclick="navigateTo('maths')">
+        <span class="material-icons subject-icon">calculate</span>
+        <h3 class="subject-title">Mathématiques</h3>
+        <p class="subject-desc">Algèbre, géométrie et plus</p>
+      </div>
+      
+      <div class="subject-card" onclick="navigateTo('french')">
+        <span class="material-icons subject-icon">menu_book</span>
+        <h3 class="subject-title">Français</h3>
+        <p class="subject-desc">Grammaire et littérature</p>
+      </div>
+      
+      <div class="subject-card" onclick="navigateTo('history')">
+        <span class="material-icons subject-icon">public</span>
+        <h3 class="subject-title">Histoire</h3>
+        <p class="subject-desc">De la Révolution à nos jours</p>
+      </div>
+      
+      <div class="subject-card" onclick="navigateTo('science')">
+        <span class="material-icons subject-icon">science</span>
+        <h3 class="subject-title">Sciences</h3>
+        <p class="subject-desc">Physique, chimie et SVT</p>
+      </div>
+      
+      <div class="subject-card" onclick="navigateTo('english')">
+        <span class="material-icons subject-icon">language</span>
+        <h3 class="subject-title">Anglais</h3>
+        <p class="subject-desc">Vocabulaire et grammaire</p>
+      </div>
+      
+      <div class="subject-card" onclick="navigateTo('geography')">
+        <span class="material-icons subject-icon">map</span>
+        <h3 class="subject-title">Géographie</h3>
+        <p class="subject-desc">Monde et développement durable</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="licenseStatus" class="license-status">Chargement...</div>
+
+  <script>
+    // Vérification de la licence
+    async function checkLicense() {
+      try {
+        if (window.AndroidInterface) {
+          // Code pour Android
+          const status = await new Promise((resolve) => {
+            window.AndroidInterface.checkLicense((result) => {
+              resolve(JSON.parse(result));
+            });
+          });
+          updateLicenseStatus(status);
+        } else {
+          // Mode développement ou navigateur
+          const status = {
+            valid: true,
+            isTrial: true,
+            daysLeft: 30,
+            message: "Mode démo (navigateur)"
+          };
+          updateLicenseStatus(status);
+        }
+      } catch (error) {
+        console.error("Erreur de vérification de licence:", error);
+        updateLicenseStatus({
+          valid: false,
+          message: "Erreur de vérification de licence"
+        });
+      }
+    }
+
+    function updateLicenseStatus(status) {
+      const statusElement = document.getElementById('licenseStatus');
+      if (status.valid) {
+        if (status.isTrial) {
+          statusElement.textContent = `Version d'essai - ${status.daysLeft} jours restants`;
+          statusElement.style.backgroundColor = 'rgba(255, 193, 7, 0.2)';
+          statusElement.style.color = '#ffc107';
+        } else {
+          statusElement.textContent = "Licence complète active";
+          statusElement.style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
+          statusElement.style.color = '#4caf50';
+        }
+      } else {
+        statusElement.textContent = status.message || "Licence non valide";
+        statusElement.style.backgroundColor = 'rgba(244, 67, 54, 0.2)';
+        statusElement.style.color = '#f44336';
+      }
+    }
+
+    function navigateTo(subject) {
+      // Vérifier la licence avant de naviguer
+      checkLicense().then(() => {
+        // Ici, vous pouvez rediriger vers la page de la matière
+        // Par exemple : window.location.href = `${subject}.html`;
+        alert(`Navigation vers ${subject} (fonctionnalité à implémenter)`);
+      });
+    }
+
+    // Vérifier la licence au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+      checkLicense();
+      
+      // Désactiver le zoom sur mobile
+      document.addEventListener('touchmove', function(event) {
+        if (event.scale !== 1) { 
+          event.preventDefault(); 
+        }
+      }, { passive: false });
+    });
+  </script>
+</body>
+</html>
